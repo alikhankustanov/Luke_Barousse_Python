@@ -1,0 +1,7 @@
+/.vscode
+/conda-25.3.1.pdf
+/desktop.ini
+/test.ipynb
+/test.py
+*.csv
+*.xlsx

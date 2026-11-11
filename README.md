@@ -61,6 +61,8 @@ plt.legend().remove()
 
 ### Salary Analysis for Data Specilaists
 
+### Visualize Data
+
 ```python
 sns.boxplot(data=df_US_top6, x='salary_year_avg', y='job_title_short', order=job_order)
 sns.set_theme(style='ticks')
@@ -79,12 +81,13 @@ plt.show()
 ![Salary distributions of Data Jobs in the USA](3_Project/images/salary_analysis_for_data_specilists.png)
 
 ### Insights
-1) Salary levels follow a clear vertical hierarchy driven by role complexity and seniority, with Data Analysts anchoring the bottom of the pay scale (median ~$90k) and Senior Data Analysts progressing to ~$110k. Moving to technical build and modeling roles yields a substantial jump, with Data Engineers and Data Scientists earning medians of ~$125k–$130k, while senior titles command median compensation packages around $150k–$155k.
-2) Data Engineers and Data Scientists display nearly identical salary distributions at both the standard and senior tiers. Their interquartile ranges overlap heavily—mid-level roles hover between ~$105k and ~$160k, while senior roles span ~$125k to ~$175k—reflecting equal market valuation for building production data pipelines versus engineering machine learning models.
-3) Every role exhibits strong right-skewed distributions with numerous high-end outliers extending far beyond the upper whiskers. While standard upper limits sit between $170k and $260k depending on the role, individual postings push into $300k–$400k+ territory across all disciplines, peaking near $600k for Data Science roles. This demonstrates that top-tier tech hubs, specialized domain expertise, and equity-heavy packages drive total compensation well above standard market medians.
+- Salary levels follow a clear vertical hierarchy driven by role complexity and seniority, with Data Analysts anchoring the bottom of the pay scale (median ~$90k) and Senior Data Analysts progressing to ~$110k. Moving to technical build and modeling roles yields a substantial jump, with Data Engineers and Data Scientists earning medians of ~$125k–$130k, while senior titles command median compensation packages around $150k–$155k.
+- Data Engineers and Data Scientists display nearly identical salary distributions at both the standard and senior tiers. Their interquartile ranges overlap heavily—mid-level roles hover between ~$105k and ~$160k, while senior roles span ~$125k to ~$175k—reflecting equal market valuation for building production data pipelines versus engineering machine learning models.
+- Every role exhibits strong right-skewed distributions with numerous high-end outliers extending far beyond the upper whiskers. While standard upper limits sit between $170k and $260k depending on the role, individual postings push into $300k–$400k+ territory across all disciplines, peaking near $600k for Data Science roles. This demonstrates that top-tier tech hubs, specialized domain expertise, and equity-heavy packages drive total compensation well above standard market medians.
 
 ### Highest Paid and Most Demanded Skills for Data Analysts
 
+### Visualize Data
 ```python
 fig, ax = plt.subplots(2, 1)  
 
@@ -114,10 +117,46 @@ sns.set_theme(style='ticks')
 plt.tight_layout()
 plt.show()
 ```
-
+### Results 
 ![Highest Paid and Most Demanded Skills for Data Analysts in the USA](3_Project/images/highest_pay_vs_most_demand.png)
 
 ### Insights
-1) There is zero overlap between the top 10 most in-demand skills and the top 10 highest-paying skills for Data Analysts in the US. While widely requested core skills (e.g., Python, Tableau, SQL, Excel) anchor the overall market, their broad adoption stabilizes median compensation within a modest $80k to $97k range. In contrast, rare specialized skills command a massive premium, with top-paying tools like dplyr ($195k) and bitbucket ($188k) fetching more than double the median salary of mainstream tools.
-2) The highest-paid skills are overwhelmingly concentrated in niche data engineering, DevOps, AI/ML, and smart contract development. Advanced technologies such as gitlab (~$185k), solidity (~$178k), hugging face (~$175k), and ansible (~$160k) sit at the upper end of the spectrum. This demonstrates that Data Analysts who expand into software architecture, version control pipelines, and specialized AI modeling capture significantly higher market compensation than standard reporting roles.
-3) The most in-demand skills exhibit extreme salary stability, spanning a tight $16k range from Microsoft Word ($81k) up to Python ($97k). Technical analysis tools like Python ($97k), R ($92k), SQL Server ($92k), and Tableau ($92k) slightly outperform general productivity software like Excel ($84k) and PowerPoint ($84k). However, because these tools form the baseline baseline for modern data roles, they serve primarily as entry requirements rather than differentiators for top-tier compensation.
+- There is zero overlap between the top 10 most in-demand skills and the top 10 highest-paying skills for Data Analysts in the US. While widely requested core skills (e.g., Python, Tableau, SQL, Excel) anchor the overall market, their broad adoption stabilizes median compensation within a modest $80k to $97k range. In contrast, rare specialized skills command a massive premium, with top-paying tools like dplyr ($195k) and bitbucket ($188k) fetching more than double the median salary of mainstream tools.
+- The highest-paid skills are overwhelmingly concentrated in niche data engineering, DevOps, AI/ML, and smart contract development. Advanced technologies such as gitlab (~$185k), solidity (~$178k), hugging face (~$175k), and ansible (~$160k) sit at the upper end of the spectrum. This demonstrates that Data Analysts who expand into software architecture, version control pipelines, and specialized AI modeling capture significantly higher market compensation than standard reporting roles.
+- The most in-demand skills exhibit extreme salary stability, spanning a tight $16k range from Microsoft Word ($81k) up to Python ($97k). Technical analysis tools like Python ($97k), R ($92k), SQL Server ($92k), and Tableau ($92k) slightly outperform general productivity software like Excel ($84k) and PowerPoint ($84k). However, because these tools form the baseline baseline for modern data roles, they serve primarily as entry requirements rather than differentiators for top-tier compensation.
+
+## 4. What is the most optimal skill to learn for Data Analysts?
+
+### Visualize Data
+
+```python
+from adjustText import adjust_text
+
+df_DA_skills_high_demand.plot(kind='scatter', x='skill_percent', y='median_salary')
+
+texts = [] # creating an empty list
+
+for i, txt in enumerate(df_DA_skills_high_demand.index):
+    texts.append(plt.text(df_DA_skills_high_demand['skill_percent'].iloc[i], df_DA_skills_high_demand['median_salary'].iloc[i], txt)) # appending this to texts list
+
+adjust_text(texts, arrowprops=dict(arrowstyle='->', color='grey', lw=1))
+
+plt.xlabel('Percent of Data Analyst Jobs')
+plt.ylabel('Median Yearly Salary')
+plt.title("Most Optimal Skills for Data Analysts in the USA")
+
+from matplotlib.ticker import PercentFormatter
+ax = plt.gca()
+ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda y, pos: f'${int(y/1000)}K'))
+ax.xaxis.set_major_formatter(PercentFormatter(decimals=0))
+
+plt.tight_layout()
+plt.show()
+```
+### Results
+![Most Optimal Skills for Data Analysts in the USA](3_Project/images/optimal_skills.png)
+
+### Insights
+- Python occupies the optimal top-right quadrant on the chart, combining high market demand (~33%) with the highest median salary among major skills (~$97.5K). Unlike niche skills that pay well but offer few openings, Python provides both widespread job availability and top-tier earning potential, making it the single most valuable technical skill for analysts to master.
+- SQL dominates overall market presence by appearing in nearly 58% of all job postings while maintaining a strong ~$91K median salary. Excel also commands substantial volume (~42% demand), but anchors the lower end of the compensation scale at ~$84.5K alongside general office tools like PowerPoint (~$85K) and Word (~$81K). This demonstrates that while spreadsheet tools remain a requirement for entry, querying languages like SQL are necessary to cross into higher salary brackets.
+- Business intelligence tools like Tableau (~31% demand, ~$93K) and Power BI (~19% demand, ~$90K) form a stable mid-tier balancing solid salaries with steady job volume. Conversely, specialized cloud/database skills like Oracle achieve premium compensation (~$97K) despite low overall market demand (~6%), showing that niche technical specialization can yield salaries comparable to programming languages like Python even with fewer available job postings.

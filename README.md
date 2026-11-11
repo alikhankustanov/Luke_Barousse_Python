@@ -33,3 +33,27 @@ plt.show()
 - SQL is the most requested skill for Data Analysts and Data Scientists, with it in over half the job postings for both roles. For Data Engineers, Python is the most sought-after skill, appearing in 68% of the job postings. 
 - Data Engineers require more specialized technical skills (AWS, Azure, Spark) compared to Data Analysts and Data Scientists who are expected to be proficient in more general data management and analysis tools(Excel,  Tableau)
 
+
+## How are in-demand skills trending for Data Analysts?
+
+### Visualize Data
+
+```python
+sns.lineplot(data=df_plot, dashes=False, palette="tab10") # to remove dashes and have solid lines instead
+sns.set_theme(style="ticks")
+
+plt.title('Trending Top Skills for Data Analysts in the US')
+plt.ylabel('Likelihood in Job Posting')
+plt.xlabel('2023')
+plt.legend().remove()
+```
+
+### Results
+![Trending Top Skills for Data Analysts in the USA](3_Project/images/skill_trend_DA.png)
+
+### Insights
+- SQL and Excel consistently lead as the top two most requested skills for US Data Analysts throughout 2023. SQL maintains the highest overall demand, staying above 50% for most of the year before dipping slightly to around 46% by December. Excel holds a firm second place (averaging 35%–42%), highlighting that foundational database querying and spreadsheet skills remain baseline requirements for the majority of job postings.
+- Tableau and Python compete closely for the third spot, both fluctuating within the 25% to 30% range. Python shows more volatility across the year—peaking briefly above Tableau in August near 30%—before both skills converge at roughly 27% in December. This close trajectory reflects balanced employer demand for data visualization tools alongside programming capabilities.
+- SAS trails as the least requested of the top five skills, hovering steadily between 17% and 22% throughout the year. Its lower baseline compared to open-source languages (Python) and business intelligence platforms (Tableau) illustrates a broader market shift toward modern, flexible analytics stacks over traditional proprietary software.
+
+

@@ -76,7 +76,7 @@ plt.gca().xaxis.set_major_formatter(ticks_x)
 plt.show()
 ```
 ### Results
-![Salary distributions of Data Jobs in the USA](3_Project\images\salary_analysis_for_data_specilists.png)
+![Salary distributions of Data Jobs in the USA](3_Project/images/salary_analysis_for_data_specilists.png)
 
 ### Insights
 1) Salary levels follow a clear vertical hierarchy driven by role complexity and seniority, with Data Analysts anchoring the bottom of the pay scale (median ~$90k) and Senior Data Analysts progressing to ~$110k. Moving to technical build and modeling roles yields a substantial jump, with Data Engineers and Data Scientists earning medians of ~$125k–$130k, while senior titles command median compensation packages around $150k–$155k.
